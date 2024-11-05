@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+            <!-- Header Section -->
+    <header class="py-4 text-center">
+      <h1 class="display-4">Newspaper Agency</h1>
+      <p class="lead">Discover the most interesting topics and news</p>
+    </header>
+  
+    <!-- Topics Section -->
+    <section class="mt-5">
+      <h2 class="text-center">Topics</h2>
+      <div class="row">
+        {% for topic in topics %}
+          <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <h5 class="card-title">{{ topic.name }}</h5>
+                <a href="{% url 'newspaper:newspapers-by-topic' topic.id %}" class="btn btn-outline-primary">View articles</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  
+    <!-- Recent Newspapers Section -->
+    <section class="mt-5">
+      <h2 class="text-center">Latest newspapers</h2>
+      <div class="list-group">
+        {% for newspaper in newspapers %}
+          <a href="{% url 'newspaper:newspaper-detail' newspaper.id %}" class="list-group-item list-group-item-action">
+            <h5>{{ newspaper.title }}</h5>
+            <p>{{ newspaper.content|truncatewords:20 }}</p>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+{% endblock %}
