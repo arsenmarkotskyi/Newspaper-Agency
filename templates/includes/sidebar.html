@@ -1,0 +1,41 @@
+<div class="sidebar shadow p-3 mb-5 bg-white rounded">
+  <ul class="sidebar-nav list-group">
+    {% if user.is_authenticated %}
+      <li class="list-group-item text-center bg-light">
+        <strong>User:</strong>
+        <a href="{{ user.get_absolute_url }}" class="text-primary">{{ user.get_username }}</a>
+      </li>
+      <li class="list-group-item text-center bg-light">
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+        </form>
+      </li>
+    {% else %}
+      <li class="list-group-item text-center bg-light">
+        <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-success btn-sm btn-block">Login</a>
+      </li>
+    {% endif %}
+
+    <li class="list-group-item">
+      <a href="{% url 'newspaper:index' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <i class="fas fa-home"></i> Home
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="{% url 'newspaper:topic-list' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <i class="fas fa-tag"></i> Topics
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="{% url 'newspaper:newspaper-list' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <i class="fas fa-newspaper"></i> Newspapers
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="{% url 'newspaper:redactor-list' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <i class="fas fa-user-edit"></i> Redactors
+      </a>
+    </li>
+  </ul>
+</div>
