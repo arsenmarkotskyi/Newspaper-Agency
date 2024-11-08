@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mt-4">Newspapers for Topic: <span class="page-header">{{ topic.name }}</span></h1>
+    
+    {% if newspapers %}
+      <div class="list-group mt-4">
+        {% for newspaper in newspapers %}
+          <div class="list-group-item mb-3 shadow-sm">
+            <h2>
+              <a href="{% url 'newspaper:newspaper-detail' newspaper.id %}" class="text-dark font-weight-bold">
+                {{ newspaper.title }}
+              </a>
+            </h2>
+            
+            <p class="mb-1">
+              <span class="badge badge-info">{{ topic.name }}</span>
+            </p>
+            
+            <p class="text-muted">
+              {{ newspaper.content|truncatewords:20 }}
+            </p>
+
+            <div class="text-secondary">
+              <small>Published on: {{ newspaper.published_date }}</small><br>
+              <small>Author: 
+                {% for publisher in newspaper.publishers.all %}
+                  {{ publisher.username }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </small>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="alert alert-warning mt-4">No newspapers found for this topic.</p>
+    {% endif %}
+  </div>
+{% endblock %}
