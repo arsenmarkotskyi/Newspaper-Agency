@@ -16,6 +16,8 @@ class Newspaper(models.Model):
     topics = models.ManyToManyField("Topic", related_name="newspaper")
     publishers = models.ManyToManyField("Redactor", related_name="newspaper")
 
+    class Meta:
+         ordering = ['-published_date']
     def __str__(self):
         return self.title
 
