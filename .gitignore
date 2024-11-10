@@ -2,3 +2,6 @@
 __pycache__
 newspaper/tests/__init__.py
 .env
+.idea/
+.flake8
+db.sqlite3
