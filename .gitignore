@@ -1,3 +1,3 @@
 .venv
 __pycache__
-tests/__init__.py
+newspaper/tests/__init__.py
