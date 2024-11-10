@@ -19,7 +19,6 @@ class AdminTests(TestCase):
             years_of_experience=2
         )
 
-
     def test_redactor_years_of_experience_lest(self):
         url = reverse("admin:newspaper_redactor_changelist")
         res = self.client.get(url)

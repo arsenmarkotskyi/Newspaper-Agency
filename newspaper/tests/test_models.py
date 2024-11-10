@@ -29,9 +29,9 @@ class ModelTests(TestCase):
         self.assertEqual(str(newspaper), f"{newspaper.title}")
 
     def test_redactor_str(self):
-        username='Test'
-        years_of_experience=0
-        password='Test123'
+        username = 'Test'
+        years_of_experience = 0
+        password = 'Test123'
         redactor = get_user_model().objects.create_user(
             username=username,
             years_of_experience=years_of_experience,

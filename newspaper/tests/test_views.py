@@ -7,6 +7,7 @@ TOPIC_URL = reverse('newspaper:topic-list')
 NEWSPAPER_URL = reverse('newspaper:newspaper-list')
 REDACTOR_URL = reverse('newspaper:redactor-list')
 
+
 class PublicAccessTest(TestCase):
     def test_login_required_for_protected_pages(self):
 
@@ -68,6 +69,7 @@ class PrivateAccessTest(TestCase):
         response = self.client.get(REDACTOR_URL)
         self.assertEqual(response.status_code, 200)
         redactors = Redactor.objects.all()
+        self.assertIn(redactor, redactors)
 
         self.assertEqual(
             list(response.context["redactor_list"]),

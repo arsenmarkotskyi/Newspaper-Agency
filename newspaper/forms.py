@@ -1,8 +1,6 @@
-from pydoc_data.topics import topics
 import re
 
 from django import forms
-
 from newspaper.models import Newspaper, Topic, Redactor
 
 
@@ -18,7 +16,7 @@ class NewspaperForm(forms.ModelForm):
         label="Topics"
     )
     publishers = forms.ModelMultipleChoiceField(
-        queryset= Redactor.objects.all(),
+        queryset=Redactor.objects.all(),
         widget=forms.CheckboxSelectMultiple(),
         label="Publishers",
     )
@@ -32,7 +30,11 @@ class RedactorForm(forms.ModelForm):
 
     class Meta:
         model = Redactor
-        fields = ["password", "username", "first_name", "last_name", "email", "years_of_experience"]
+        fields = [
+            "password", "username",
+            "first_name", "last_name",
+            "email", "years_of_experience"
+        ]
 
     def clean_password(self):
         password = self.cleaned_data.get("password")
@@ -41,14 +43,20 @@ class RedactorForm(forms.ModelForm):
         return password
 
 
-
 def validate_password(value):
     if len(value) < 8:
-        raise forms.ValidationError("Password must be at least 8 characters")
+        raise forms.ValidationError(
+            "Password must be at least 8 characters"
+        )
     if not re.search(r"[a-zA-Z]", value):
-        raise forms.ValidationError("Password must contain at least one letter (uppercase or lowercase).")
+        raise forms.ValidationError(
+            "Password must contain at least "
+            "one letter (uppercase or lowercase)."
+        )
     if not re.search(r"\d", value):
-        raise forms.ValidationError("Password must contain at least one digit.")
+        raise forms.ValidationError(
+            "Password must contain at least one digit."
+        )
 
 
 class NewspaperSearchForm(forms.Form):

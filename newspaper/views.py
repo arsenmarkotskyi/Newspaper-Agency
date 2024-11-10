@@ -14,6 +14,7 @@ def index(request: HttpRequest) -> HttpResponse:
     newspapers = Newspaper.objects.all()
     return render(request, "newspaper/index.html", {'topics': topics, 'newspapers': newspapers})
 
+
 class TopicListView(LoginRequiredMixin, SearchMixin, generic.ListView):
     model = Topic
     template_name = "newspaper/topic_list.html"
@@ -27,6 +28,7 @@ class TopicCreateView(LoginRequiredMixin, generic.CreateView):
     fields = "__all__"
     success_url = reverse_lazy("newspaper:topic-list")
     template_name = "newspaper/topic_form.html"
+
 
 class NewspaperByTopicView(LoginRequiredMixin, generic.ListView):
     model = Newspaper
@@ -111,6 +113,7 @@ class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
 class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
     form_class = RedactorForm
+
     def get_success_url(self):
         return reverse_lazy("newspaper:redactor-detail", kwargs={"pk": self.object.pk})
 

@@ -1,6 +1,4 @@
-from pydoc_data.topics import topics
 
-from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.utils import timezone
 
@@ -43,7 +41,6 @@ class RedactorFormTest(TestCase):
         data = self.valid_data.copy()
         data.update(kwargs)
         return RedactorForm(data=data)
-
 
     def test_form_is_valid_with_correct_data(self):
         form = self.create_form()

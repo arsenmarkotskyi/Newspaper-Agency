@@ -20,7 +20,6 @@ from newspaper.views import (
 from django.urls import path
 
 
-
 app_name = 'newspaper'
 
 urlpatterns = [
@@ -40,5 +39,4 @@ urlpatterns = [
     path("redactor/create/", RedactorCreateView.as_view(), name="redactor-create"),
     path("redactor/<int:pk>/update/", RedactorUpdateView.as_view(), name="redactor-update"),
     path("redactor/<int:pk>/delete/", RedactorDeleteView.as_view(), name="redactor-delete"),
-
 ]
