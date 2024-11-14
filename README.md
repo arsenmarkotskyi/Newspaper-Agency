@@ -1,5 +1,34 @@
 # Newspaper-Agency
 
+Django project for managing newspapers, topics and authors
+
+## Check it out
+
+Newspaper agency project deployed to Render
+
+## Installation
+
+Python3 must be installed
+
+```shell
+git clone https://github.com/arsenmarkotskyi/Newspaper-Agency
+cd newspaper_agency
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python manage.py runserver
+
+```
+
+## Features
+* Authentication functionality for Redactor/User
+* Managing topics, newspapers & redactors directly from website interface
+* Powerful admin panel for advanced managing
+
+## Demo
+
+![[Website Interface]](demo.png)
+
 ## Models
 
 ### Newspaper
@@ -101,4 +130,5 @@ Run tests with:
 
 ```bash
 python manage.py test
+```
 
