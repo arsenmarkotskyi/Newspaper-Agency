@@ -1,6 +1,8 @@
 import re
 
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+
 from newspaper.models import Newspaper, Topic, Redactor
 
 
@@ -58,6 +60,12 @@ def validate_password(value):
             "Password must contain at least one digit."
         )
 
+
+class RedactorRegistrationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+    class Meta:
+        model = Redactor
+        fields = ["username", "email", "years_of_experience", "password1", "password2"]
 
 class NewspaperSearchForm(forms.Form):
     title = forms.CharField(
