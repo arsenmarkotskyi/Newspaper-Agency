@@ -2,6 +2,8 @@
 
 Django project for managing newspapers, topics and authors
 
+[Link for deployed project](https://newspaper-agency-8p7q.onrender.com/) 
+
 ## Check it out
 
 Newspaper agency project deployed to Render
